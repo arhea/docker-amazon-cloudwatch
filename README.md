@@ -38,7 +38,7 @@ KUBE_WORKER_ROLE="<ROLE ARN ASSIGNED TO WORKER NODE>"
 aws iam create-role \
   --role-name KubernetesCloudwatchAgentRole \
   --description "Kubernetes administrator role (for AWS IAM Authenticator for Kubernetes)." \
-  --assume-role-policy-document "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Sid\":\"\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"ec2.amazonaws.com\"},\"Action\":\"sts:AssumeRole\"},{\"Sid\":\"\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"${KUBE_WORKER_ROLE}\"},\"Action\":\"sts:AssumeRole\"}]}" \
+  --assume-role-policy-document "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Sid\":\"\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"ec2.amazonaws.com\"},\"Action\":\"sts:AssumeRole\"},{\"Sid\":\"\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"$KUBE_WORKER_ROLE\"},\"Action\":\"sts:AssumeRole\"}]}" \
   --output text \
   --query 'Role.Arn'
 
@@ -66,7 +66,7 @@ spec:
             labels:
                 name: cloudwatch-agent
             annotations:
-                iam.amazonaws.com/role: role-arn
+                iam.amazonaws.com/role: IAM_ROLE_ARN
 ...
 ```
 

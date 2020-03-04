@@ -2,7 +2,7 @@
 
 This guide walks you through deploying the Amazon Cloudwatch Agent to collect host level metrics via a Kubernetes DaemonSet. These configurations leverage the [official image published by AWS on Docker Hub](https://hub.docker.com/r/amazon/cloudwatch-agent). I have also included a [Dockerfile](./Dockerfile) in this repository if you want to build your own image. If you decide to build your own image, swap out the name of the image in the Kubernetes Manifests inside the `deploy` directory.
 
-## Getting Started with EKSCTL
+## Getting Started with eksctl
 
 Before getting started we need an IAM role for our agent to use, so that it can publish metrics to the Cloudwatch API. In this example, we will use the [eksctl](https://eksctl.io/) utility to wire up the IAM role with a Service Account.
 
@@ -27,7 +27,7 @@ It is that simple!
 
 ## Getting Started with kube2iam
 
-Before deploying you will need to create a specific role to attach to the pod.
+Before getting started we need an IAM role for our agent to use, so that it can publish metrics to the Cloudwatch API. In this example, we are using [kube2iam](https://github.com/jtblin/kube2iam) to apply the role to the pod at runtime.
 
 ```bash
 
